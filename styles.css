@@ -21,6 +21,11 @@ input[type=text]:focus {
     gap: 10px; /* 按钮间距 */
 
 }
+form {
+  margin: 15rem; /* 四周相同的间距 */
+  /* 或者分别指定 */
+ 
+}
 h1{
    text-align: center;
     font-family: 'Aboreto';
