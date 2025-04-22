@@ -53,3 +53,31 @@ const evenCustom = numbers.myFilter(x => x % 2 === 0);
 console.log(evenCustom); // [2, 4]
 
 
+Array.prototype.myReduce = function(cb, initialValue) {
+  let accumulator;
+    let start = 0; // Start index for the loop
+    if (initialValue === undefined) { // If no initial value is provided
+        accumulator = this[0]; // Set the accumulator to the first element
+        start = 1; // Start the loop from the second element
+    }
+     if (arguments.length >= 2) {
+    accumulator = initialValue; // 显式初始值
+     }
+
+    for (let i = start; i < this.length; i++) { // Loop through the array
+        if (i in this) {
+
+        accumulator = cb(accumulator, this[i], i, this); // Call the callback function on each element
+    }
+}
+    return accumulator; // Return the accumulated value
+};
+console.log([1, 2, 3].myReduce((sum, n) => sum + n, 0)); // 6
+
+console.log([1, , 3].myReduce((sum, n) => sum + n,10)); // 13
+console.log([1, 2, 3].myReduce((sum, n) => sum + n)); // 6
+
+
+
+
+
