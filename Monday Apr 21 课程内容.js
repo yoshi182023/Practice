@@ -162,3 +162,38 @@ var employee = {
 console.log(employee.display)
 
 //Using get changes the way the function display() is called. It is now called in exactly the same way as how a property is called: employee.display, whereas without get, it is called as a function: employee.display().
+
+
+
+var employee = {
+  
+  name: 'Joe',
+  age: 28,
+  designation: 'developer',
+  //function setting the value of "designation" equal to the parameter being passed to the function
+  setDesignation(desig) { 
+    this.designation = desig
+  }
+}
+//displaying the value of "designation" at start
+console.log("Old designation was:",employee.designation)
+//updating the value of designation
+employee.setDesignation('engineer')
+//  by calling setDesignation as a function and passing the parameter engineer to it. 
+//displaying new value of designation
+console.log("New designation is:",employee.designation)
+
+var employee = {
+  
+  name: 'Joe',
+  age: 28,
+  designation: 'developer',
+  //function setting designation of the employee
+  set setDesignation(desig) {
+    this.designation = desig //using this to refer to the "employee" object
+  }
+}
+console.log("designation originally is:",employee.designation)
+employee.setDesignation = 'engineer'
+//when the set keyword is used, setDesignation sets the value of designation similarly to how any other property value would be set.
+console.log("new designation is:",employee.designation)
