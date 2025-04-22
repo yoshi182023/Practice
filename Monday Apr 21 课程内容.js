@@ -121,3 +121,44 @@ class Person3 {
     return this.#age;
   }
 }
+const person11 = new Person3("张三", 30);
+const person22 = new Person3("李四", 25);
+console.log(Person2.count); // 2（已创建两个实例）
+person11.greeting(); // 输出："hello from 张三, age: 30"
+// 使用getter/setter
+console.log(person11.age); // 先输出"正在执行age的getter方法"，然后返回30
+person11.age = 31;    // 输出"正在执行age的setter方法"，更新age
+console.log(person11.age); // 现在返回31
+// 尝试访问私有字段
+console.log(person11.name); // "张三"（公共属性可访问）
+//console.log(person11.#age); // 报错SyntaxError: 私有字段必须在封闭类中声明
+
+
+var employee = {
+  
+  name: 'Joe',
+  age: 28,
+  designation: 'developer',
+  //function returning designation of the employee
+  display() {
+    return this.designation //using this to refer to the "employee" object
+  }
+}
+//this will display the designation
+console.log(employee.display())
+// Here, the function display() was being used to get the value of the property designation. Another way to do this is by using the get keyword.
+
+var employee = {
+  
+  name: 'Joe',
+  age: 28,
+  designation: 'developer',
+  //function returning designation of the employee
+  get display() {
+    return this.designation //using this to refer to the "employee" object
+  }
+}
+//this will display the designation
+console.log(employee.display)
+
+//Using get changes the way the function display() is called. It is now called in exactly the same way as how a property is called: employee.display, whereas without get, it is called as a function: employee.display().
