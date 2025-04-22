@@ -77,6 +77,35 @@ console.log([1, 2, 3].myReduce((sum, n) => sum + n, 0)); // 6
 console.log([1, , 3].myReduce((sum, n) => sum + n,10)); // 13
 console.log([1, 2, 3].myReduce((sum, n) => sum + n)); // 6
 
+Array.prototype.myIncludes = function(searchElement) {
+  if (this == null) {
+    throw new TypeError('Array.prototype.myIncludes called on null or undefined');
+  }
+for (let i = 0; i < this.length; i++) {
+    if (i in this && (
+      this[i] === searchElement ||
+      (Number.isNaN(searchElement) && Number.isNaN(this[i]))
+    )) {
+      return true;
+    }
+  }
+  return false;
+};
+  const arr = [1, 2, NaN, 'a'];
+ console.log(arr.myIncludes(2));      // true
+ console.log(arr.myIncludes(3));      // false
+ console.log("myIncludesNaN",arr.myIncludes(NaN));    // true (原生includes的特殊行为)
+ console.log(arr.includes(NaN))
+console.log(arr.myIncludes('a', 3)); // true
+// console.log(arr.myIncludes('a', 4)); // false
+//   return false;
+// };
+const pets = ["cat", "dog", "bat"];
+console.log(pets.myIncludes("cat"));
+console.log([].includes(undefined))
+console.log([].myIncludes(undefined))
+console.log([].includes(3))
+console.log([].myIncludes(3))
 
 
 
