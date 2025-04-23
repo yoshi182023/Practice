@@ -1,154 +1,40 @@
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"] {
-  padding: 12px 20px;
-  margin: 8px 0;
-      width: 100%;
-  box-sizing: border-box;
- border: 1px solid #ccc;
-  outline: none;
-    border-radius: 5px;
-}
-input[type=text]:focus {
-  background-color: lightblue;
-}
-.form-inline  {
-  vertical-align: middle;
- display: flex;
-  flex-flow: row wrap;
-    gap: 10px; /* 按钮间距 */
-
-}
-form {
-  margin: 15rem; /* 四周相同的间距 */
- 
- 
-}
-h1{
-   text-align: center;
-    font-family: 'Aboreto';
-
-}
- .right{
-      font-family: 'Aboreto';
-      font-size: 12px;
-
-}
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-button:hover {
-  opacity:1;
-}
-
-.registerbtn {
-  padding: 14px 20px;
-  background-color: #pink;
-
-}
-
-
-.registerbtn, .signinbtn {
-    display: inline-block;
-    margin-right: 12%; /* 增加右侧间距 */
-
-}
-
-.form-inline {
-  display: flex;
-  gap: 10px; 
-  margin-bottom: 10px;
-}
-
-.form-inline .child {
-  flex: 1; 
-  min-width: 0;
-}
-
-@media (max-width: 800px) {
-  .form-inline input {
-    margin: 10px 0;
+#card-deck {
+    display: flex;
+      flex-wrap: wrap;
+      padding: 1.5rem;
   }
-  
-  .form-inline {
-    flex-direction: column;
-    align-items: stretch;
+  .card-wrapper {
+    background: #f5f5f5;
+    border-radius: 10px;
+     flex-basis: calc(100% / 6);
+      /* how big do we want our columns to be */
+      padding: 6px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
-}
-  box-sizing: border-box;
- border: 1px solid #ccc;
-  outline: none;
-    border-radius: 5px;
-}
-input[type=text]:focus {
-  background-color: lightblue;
-}
-.form-inline  {
-  vertical-align: middle;
- display: flex;
-  flex-flow: row wrap;
-    gap: 10px; /* 按钮间距 */
-
-}
-
-button {
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-  border-radius:12px
-}
-button:hover {
-  opacity:1;
-}
-
-#registerbtn {
-  padding: 14px 20px;
- 
-}
-
-.form-inline.agreement {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.form-inline.agreement .left {
-  padding:10px;
-  flex: 2;
-  display: flex;
-  align-items: center;
-}
-
-.form-inline.agreement .right {
-  flex: 3; /* 右边 2/3 宽度 */
-  margin: 10px;
-  line-height: 1.5;
-}
-[target="registerbtn"] {
-   background-color: lightblue;
-}
-
-@media (max-width: 800px) {
-  .form-inline input {
-    margin: 10px 0;
+  .pokemon-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
   }
-  
-  .form-inline {
-    flex-direction: column;
-    align-items: stretch;
+  .pokemon-card h3 {
+    margin: 10px 0 5px;
+    color: #333;
   }
+  .pokemon-card p {
+    margin: 2;
+    color: #666;
+    font-size: 14px;
+  }
+
+.pokemon-card {
+padding: 0.5rem;
+border: 5px solid grey;
+border-radius: 0.85rem;
+box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.5);
+}
+
+.pokemon-card img {
+width: 100%;
+background-color: lightgrey;
 }
