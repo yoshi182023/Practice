@@ -87,6 +87,34 @@ function Person2(name) {
 const p2 = Person2("bob");
 console.log(p2);
 //工厂函数是将返回一个新的object的任何不是类或者构造函数的函数。在js中，任何函数都能够返回一个object.如果我们不是通过new function()的方式来获得这个对象的，那么她就是一个factory工厂函数.
+//This functions makes and returns an object every time it is called.
+// The resulting objects all follow the same "recipe"
+
+function makeColor(r, g, b) {//工厂函数是
+	const color = {};
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.rgb = function() {
+		const { r, g, b } = this;
+		return `rgb(${r}, ${g}, ${b})`;
+	};
+	color.hex = function() {
+		const { r, g, b } = this;
+		return (
+			'#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+		);
+	};
+	return color;
+}
+
+const firstColor = makeColor(35, 255, 150);
+firstColor.hex(); //firstColor.hex();
+firstColor.rgb(); //"rgb(35, 255, 150)"
+
+const black = makeColor(0, 0, 0);
+black.rgb(); //"rgb(0, 0, 0)"
+black.hex(); //"#0000s00"
 
 // class keyword
 // abstraction, polymorphism, inheritance, encapsulation
