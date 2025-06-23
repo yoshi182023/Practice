@@ -1,0 +1,22 @@
+ 
+
+class Main {
+    public static void main(String[] args) {
+       int a = 10;
+       int b = 20;
+       switch(a){
+           case 30: 
+               System.out.println("a is 30");
+               //break;
+           case 10: 
+               System.out.println("a is 10");
+               //break;
+           case 20: 
+               System.out.println("a is 20");
+               //break;
+       }
+    }
+}
+
+a is 10
+a is 20
