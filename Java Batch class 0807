@@ -1,0 +1,83 @@
+class Main {
+    public static void main(String[] args) {
+        ScientificCalculator cal1 = new ScientificCalculator(2.0, 8.0);
+        cal1.add();
+        System.out.println("add: " + cal1.result);
+          cal1.sub();
+        System.out.println("sub: " + cal1.result);
+          cal1.mult();
+        System.out.println("mult: " + cal1.result);
+         cal1.pow();
+        System.out.println("pow: " + cal1.result);
+         cal1.log();
+        System.out.println("log: " + cal1.result);
+        
+        //         Calculator cal2 = new ScientificCalculator(2.0, 8.0);
+        // cal2.add();
+        // System.out.println("add: " + cal2.result);
+        //   cal2.sub();
+        // System.out.println("sub: " + cal2.result);
+        //   cal2.mult();
+        // System.out.println("mult: " + cal2.result);
+        //  cal2.pow();
+        // System.out.println("pow: " + cal2.result);
+        //  cal2.log();
+        // System.out.println("log: " + cal2.result);
+    }
+}
+
+class Calculator {
+    public double a;
+    public double b;
+    double result;
+
+    public Calculator() {
+        result = 0;
+    }
+
+    public Calculator(double a, double b) {
+        this.a = a;
+        this.b = b;
+        result = 0;
+    }
+
+    public void add() {
+        result = a + b;
+    }
+
+    public void sub() {
+        result = a - b;
+    }
+
+    public void mult() {
+        result = a * b;
+    }
+
+    public void div() {
+        result = a / b;
+    }
+}
+
+class AdvanceCalculator extends Calculator {
+    public AdvanceCalculator(double a, double b) {
+        super(a, b);
+    }
+
+    public void mod() {
+        result = a % b;
+    }
+
+    public void pow() {
+        result = Math.pow(a, b);
+    }
+}
+
+class ScientificCalculator extends AdvanceCalculator {
+    public ScientificCalculator(double a, double b) {
+        super(a, b);
+    }
+
+    public void log() {
+        result = Math.log(b) / Math.log(a);  // 以 a 为底 b 的对数
+    }
+}
