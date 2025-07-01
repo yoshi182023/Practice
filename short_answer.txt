@@ -1,0 +1,107 @@
+Before submitting this file, make sure that there are no more TODO
+placeholders remaining in the file (and remove this comment too).
+
+Perfect Numbers
+---------------
+
+Q1. Roughly how long did it take your computer to do the search? How many perfect numbers were found and what were they?
+A1.
+For N=40,000: Completed in 1.684 seconds,  4 perfect numbers. Specifically:
+
+6
+
+28
+
+496
+
+8128
+
+Q2. Make a table of the timing results for `findPerfects` that you observed. (old-school table of text rows and columns is just fine)
+A2.
+Size(N)-Time (seconds) Growth Factor
+1,000	0.014	-
+2,000	0.021	1.5x
+4,000	0.050	2.4x
+8,000	0.130	2.6x
+--------------------
+10,000	0.145	-
+20,000	0.442	3.0x
+40,000	1.684	3.8x
+80,000  6.683   3.9x
+160,000 26.98   4x
+
+Q3. Does it take the same amount of work to compute `isPerfect` on the number 10 as it does on the number 1000? Why or why not? Does it take the same amount of work for `findPerfects` to search the range of numbers from 1-1000 as it does to search the numbers from 1000-2000? Why or why not?
+A3.
+No, isPerfect(1000) requires more work than isPerfect(10) because it checks more potential divisors (up to 999 vs. up to 9).
+TIME_OPERATION findPerfects(10) (size =       10) completed in    0.007 secs
+TIME_OPERATION findPerfects(1000) (size =     1000) completed in    0.015 secs
+findPerfects: No, searching 1000-2000 requires more work than 1-1000 because each number in the higher range needs more divisor checks on average.
+
+Q4. Extrapolate from the data you gathered and make a prediction: how long will it take `findPerfects` to reach the fifth perfect number?
+A4.
+Based on the quadratic time complexity (O(n²)) observed in our timing data, finding the fifth perfect number would take approximately 14 days of continuous computation.
+Our 40,000-size test took 1.684 seconds
+The fifth perfect number is ~4,096× larger (33,000,000/8,128 ≈ 4,060)
+Size ratio: 33,000,000/40,000 ≈ 825
+Time scales by 825² ≈ 700,000×
+1.684 sec × 700,000 ≈ 14 days
+Q5. Do any of the tests still pass even with this broken function? Why or why not?
+A5. 28 are perfect and still pass.
+(PROVIDED_TEST, perfect.cpp:154) Confirm 12 and 98765 are not perfect passed.
+Because divisors of 12: 1, 2, 3, 4, 6 together =16， with the bug 1 + 1 + 2 + 3 + 4 + 6 = 17
+isPerfect(12) return 12 == 17 → false or  12 == 16,same:false.
+isPerfect(98765) same logic.
+Q6. Explain your testing strategy for `smarterSum` and how you chose your specific test cases that lead you to be confident the function is working correctly.
+A6. Test 0: Perfect Square (n = 25)Purpose: Verify the loop stops at √n and avoids double-counting the square root.
+Checks if the condition if (complement != d) works when d = √n (e.g., 5 for n=25).
+Test 4:Tested negative number. And the rest tested correctness for large inputs,prime Number etc.
+
+Q7. Record your timing results for `findPerfectsSmarter` into a table.
+A7. Input Size  Time (seconds)
+800,000	        1.332	         -
+1,600,000	3.212	       ~2.4× slower than 800,000
+3,200,000	8.681	       ~2.7× slower than 1,600,000
+
+8,000,000	34.138s	         -
+16,000,000	95.166s	       2.79×
+32,000,000	289.488s       3.04×
+
+Q8. Make a prediction: how long will `findPerfectsSmarter` take to reach the fifth perfect number?
+A8. From 800K → 1.6M (2× size): Time increased by 2.4×
+From 1.6M → 3.2M (2× size): Time increased by 2.7×
+ ~2.8× for 2× size
+ 5th perfect number: 33,550,336
+                    N=3,200,000 took 8.681 sec but didn’t reach 33,550,336.
+                    N=33,550,336 (≈ 10.5× larger than 3,200,000
+For O(n√n), scaling by k increases time by k√k.
+k = 33,550,336 / 3,200,000 ≈ 10.5；k√k ≈ 10.5 × 3.24 ≈ 34× longer than 3,200,000. 8.681 sec (for 3.2M) × 34 ≈ 295 sec
+Q9. Explain how you chose your specific test cases and why they lead you to be confident `findNthPerfectEuclid` is working correctly.
+A9. isPrime unit tests, ensuring Mersenne prime detection isn’t the bottleneck.
+Large n tests confirm the algorithm doesn’t break under realistic use cases.
+Small n tests give instant feedback; large n tests validate scalability.
+
+
+Soundex
+-------
+
+Q10. What is the Soundex code for "Angelou"? What is the code for your own surname?
+A10. A524
+my Surname: Gong = G520
+
+Q11. Before writing any code, brainstorm your plan of attack and sketch how you might decompose the work into smaller tasks. Briefly describe your decomposition strategy.
+A11. Write a helper function to remove non-letter characters from the surname. Implement a helper to
+convert letters to Soundex digits, then removeDouble to eliminate adjacent duplicates.
+Assemble Final Code:replace the first digit with the uppercase first letter,
+remove zeros, and pad/truncate to 4 characters.
+
+Q12. Think about one or more examples of a class of names that the Soundex system might not work well for. Explain what this class of names is and why the system might incorrectly group them or mis-categorize one of the names.
+A12. Soundex might poorly for names from non-English languages, such as Chinese or Arabic, because it is based on English spelling and phonetics.
+It often misclassifies names with similar sounds but different spellings or groups unrelated names together e.g., "Zhao" and "Chao".
+This can lead to inaccurate matching and systemic bias against non-Western names.
+
+Q13. Suppose you are a software engineer working for the U.S. government. You have been tasked with implementing a system that collects names as part of the Census survey and analyzes these names using a phonetic algorithm. Your boss suggests using Soundex and notes that the algorithm is only expected to work for ASCII-encoded strings, since supporting Unicode would require extra work and time. What would your response be and why? What representational harms might result from building a system that exclusively uses Soundex and/or ASCII?
+A13.
+I would suggest using Unicode instead of limiting the system to ASCII, since Unicode allows for more accurate and inclusive representation of all names.
+Relying only on ASCII and Soundex may confuse or misclassify names from diverse cultures, leading to exclusion and misrepresentation.
+
+
