@@ -1,22 +1,27 @@
 #include <iostream>
 #include "console.h"
 #include "SimpleTest.h"
-#include "perfect.h"
-#include "soundex.h"
+#include "maze.h"
+#include "search.h"
 using namespace std;
 
+// You are free to edit the main in any way that works
+// for your testing/debugging purposes.
+// We will supply our main() during grading
 
 int main() {
     if (runSimpleTests(SELECTED_TESTS)) {
         return 0;
     }
 
-    //findPerfects(40000);
-    // Comment out the above line and uncomment below line 
-    // to switch between running perfect.cpp and soundex.cpp
-  soundexSearch("res/surnames.txt");
+    Grid<bool> maze;
+    Vector<GridLocation> soln;
+    readMazeFile("res/21x23.maze", maze);
+    solveMazeBFS(maze, soln);
 
-    cout << "Back in main(): FINISHED!" << endl;
+    searchEngine("res/website.txt");
+
+    cout << endl << "Back in main(): FINISHED!" << endl;
     return 0;
 }
 
@@ -24,23 +29,26 @@ int main() {
 // Do not remove or edit below this line. It is here to confirm that your code
 // conforms to the expected function prototypes needed for grading
 void confirmFunctionPrototypes() {
-    long n = 0;
+    Grid<bool> g;
+    GridLocation loc;
+    Set<GridLocation> set;
+    Vector<GridLocation> path;
+    string str;
     bool b;
-    string s;
 
-    n = divisorSum(n);
-    b = isPerfect(n);
-    if (b)
-        ;
-    findPerfects(n);
+    set = generateValidMoves(g, loc);
+    validatePath(g, path);
+    readMazeFile(str, g);
+    readSolutionFile(str, path);
+    b = solveMazeBFS(g, path);
+    b = solveMazeDFS(g, path);
+    if (b) {}
 
-    n = smarterSum(n);
-    b = isPerfectSmarter(n);
-    findPerfectsSmarter(n);
-
-    n = findNthPerfectEuclid(n);
-
-    s = lettersOnly(s);
-    s = soundex(s);
-    soundexSearch(s);
+    Set<string> strset;
+    Map<std::string, Set<std::string>> map;
+    str = cleanToken(str);
+    strset = gatherTokens(str);
+    buildIndex(str, map);
+    strset = findQueryMatches(map, str);
+    searchEngine(str);
 }
